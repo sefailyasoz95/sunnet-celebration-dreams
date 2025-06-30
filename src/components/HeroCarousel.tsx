@@ -50,12 +50,12 @@ const HeroCarousel = () => {
     },
   ];
 
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     setCurrentSlide((prev) => (prev + 1) % slides.length);
-  //   }, 5000);
-  //   return () => clearInterval(timer);
-  // }, [slides.length]);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -148,7 +148,7 @@ const HeroCarousel = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-8 right-5 transform -translate-x-1/2 text-white text-center"
+        className="absolute bottom-9 right-4 transform -translate-x-1/2 text-white text-center"
       >
         <div className="backdrop-blur-md px-1 rounded-lg">
           <p className="text-sm mb-2 text-[#fef102]/90 font-semibold z-10">
