@@ -2,47 +2,52 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import one from "../assets/images/1.jpeg";
-import two from "../assets/images/2.jpeg";
 import three from "../assets/images/3.jpeg";
-import four from "../assets/images/4.jpeg";
 import five from "../assets/images/5.jpeg";
 import six from "../assets/images/6.jpeg";
-import seven from "../assets/images/7.jpeg";
 import eight from "../assets/images/8.jpeg";
 import nine from "../assets/images/9.jpeg";
+import ten from "../assets/images/10.png";
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
       image: one,
-      title: "Memories in the Making",
-      subtitle: "A special day to remember forever",
+      title: "Merhaba, ben Selim Ali",
+      subtitle: "",
     },
     {
       image: nine,
-      title: "Celebrating Together",
-      subtitle: "Family, friends, and joyful moments",
+      title:
+        "Bu sayfada büyüdüğümü gösteren fotoğraflar ile size bir mesajım var",
+      subtitle: "",
     },
     {
       image: three,
-      title: "Celebrating Together",
-      subtitle: "Family, friends, and joyful moments",
+      title: "Eğlenceli anlarımdan",
+      subtitle: "",
     },
     {
       image: five,
-      title: "Celebrating Together",
-      subtitle: "Family, friends, and joyful moments",
+      title: "Mutlu anlarımdan resimler",
+      subtitle: "",
     },
     {
       image: eight,
-      title: "A New Chapter Begins",
-      subtitle: "With love, tradition, and happiness",
+      title: "Tatil günlerimden",
+      subtitle: "",
     },
     {
       image: six,
-      title: "Blessed Moments",
-      subtitle: "Surrounded by those who matter most",
+      title: "Ailemle birlikte güzel anılar biriktiriyorum.",
+      subtitle: "",
+    },
+    {
+      image: ten,
+      title:
+        "Sünnet günümden resimleri aşağıdaki alandan yükleyerek paylaşmanızı rica ediyorum.",
+      subtitle: "Böylece anılarıma sizde katkı sağlamış olursunuz!",
     },
   ];
 
@@ -97,7 +102,7 @@ const HeroCarousel = () => {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
-            className="text-lg md:text-xl lg:text-2xl text-[#fef102]/90 font-light"
+            className="text-lg md:text-xl lg:text-2xl text-[#fef102]/90 font-semibold"
           >
             {slides[currentSlide].subtitle}
           </motion.p>
