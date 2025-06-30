@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import one from "../assets/images/1.jpeg";
@@ -19,35 +19,34 @@ const HeroCarousel = () => {
     },
     {
       image: nine,
-      title:
-        "Bu sayfada büyüdüğümü gösteren fotoğraflar ile size bir mesajım var",
+      title: "",
       subtitle: "",
     },
     {
       image: three,
-      title: "Eğlenceli anlarımdan",
+      title: "",
       subtitle: "",
     },
     {
       image: five,
-      title: "Mutlu anlarımdan resimler",
+      title: "",
       subtitle: "",
     },
     {
       image: eight,
-      title: "Tatil günlerimden",
+      title: "",
       subtitle: "",
     },
     {
       image: six,
-      title: "Ailemle birlikte güzel anılar biriktiriyorum.",
+      title: "",
       subtitle: "",
     },
     {
       image: ten,
-      title:
-        "Sünnet günümden resimleri aşağıdaki alandan yükleyerek paylaşmanızı rica ediyorum.",
-      subtitle: "Böylece anılarıma sizde katkı sağlamış olursunuz!",
+      title: "Sünnet cemiyetime ait mekan ve konum bilgileri aşağıdadır.",
+      subtitle:
+        "Ayrıca çektiğiniz resimleri bu sayfa en altındaki formdan benimle paylaşırsanız çok mutlu olurum!",
     },
   ];
 
@@ -86,14 +85,14 @@ const HeroCarousel = () => {
       </AnimatePresence>
 
       {/* Content Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center text-white px-4 max-w-4xl">
+      <div className="absolute inset-0 flex items-end justify-center">
+        <div className="text-center text-white px-4 mb-10 max-w-4xl">
           <motion.h1
             key={`title-${currentSlide}`}
             initial={{ y: 80, opacity: 0, scale: 0.8 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-[#fef102] to-white bg-clip-text text-transparent"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-[#fef102] to-[#004682] bg-clip-text text-transparent"
           >
             {slides[currentSlide].title}
           </motion.h1>
@@ -102,7 +101,7 @@ const HeroCarousel = () => {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
-            className="text-lg md:text-xl lg:text-2xl text-[#fef102]/90 font-semibold"
+            className="text-lg md:text-xl text-[#004682]/90 font-semibold"
           >
             {slides[currentSlide].subtitle}
           </motion.p>
