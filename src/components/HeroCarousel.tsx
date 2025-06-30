@@ -15,32 +15,32 @@ const HeroCarousel = () => {
     {
       image: one,
       title: "Merhaba, ben Selim Ali",
-      subtitle: "",
+      subtitle: "Lütfen son resme kadar bakın",
     },
     {
       image: nine,
-      title: "",
-      subtitle: "",
+      title: "Bu sayfada büyüdüğümü gösteren bir kaç fotoğraf ile",
+      subtitle: "size bir mesajım var",
     },
     {
       image: three,
-      title: "",
+      title: "Eğlenceli anlarımdan",
       subtitle: "",
     },
     {
       image: five,
-      title: "",
+      title: "Mutlu anlarımdan",
       subtitle: "",
     },
     {
       image: eight,
-      title: "",
+      title: "Tatil günlerimden",
       subtitle: "",
     },
     {
       image: six,
-      title: "",
-      subtitle: "",
+      title: "Ailemle güzel anılar biriktiriyorum",
+      subtitle: "sizde anılarıma katkıda bulunun",
     },
     {
       image: ten,
