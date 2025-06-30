@@ -62,7 +62,8 @@ const MapSection = () => {
               viewport={{ once: true }}
               className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
             >
-              Düğünlerin konumu için aşağıdaki haritaları kullanabilirsiniz.
+              Düğünlerin konumu için aşağıdaki <i>Haritada Gör</i> butonunu
+              kullanabilirsiniz.
             </motion.p>
           </motion.div>
 
