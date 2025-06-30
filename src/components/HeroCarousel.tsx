@@ -1,32 +1,49 @@
-
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import one from "../assets/images/1.jpeg";
+import two from "../assets/images/2.jpeg";
+import three from "../assets/images/3.jpeg";
+import four from "../assets/images/4.jpeg";
+import five from "../assets/images/5.jpeg";
+import six from "../assets/images/6.jpeg";
+import seven from "../assets/images/7.jpeg";
+import eight from "../assets/images/8.jpeg";
+import nine from "../assets/images/9.jpeg";
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=1920&h=1080&fit=crop",
+      image: one,
       title: "Memories in the Making",
-      subtitle: "A special day to remember forever"
+      subtitle: "A special day to remember forever",
     },
     {
-      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1920&h=1080&fit=crop",
+      image: nine,
       title: "Celebrating Together",
-      subtitle: "Family, friends, and joyful moments"
+      subtitle: "Family, friends, and joyful moments",
     },
     {
-      image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=1920&h=1080&fit=crop",
+      image: three,
+      title: "Celebrating Together",
+      subtitle: "Family, friends, and joyful moments",
+    },
+    {
+      image: five,
+      title: "Celebrating Together",
+      subtitle: "Family, friends, and joyful moments",
+    },
+    {
+      image: eight,
       title: "A New Chapter Begins",
-      subtitle: "With love, tradition, and happiness"
+      subtitle: "With love, tradition, and happiness",
     },
     {
-      image: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d?q=80&w=1920&h=1080&fit=crop",
+      image: six,
       title: "Blessed Moments",
-      subtitle: "Surrounded by those who matter most"
-    }
+      subtitle: "Surrounded by those who matter most",
+    },
   ];
 
   useEffect(() => {
@@ -55,7 +72,7 @@ const HeroCarousel = () => {
           transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
           className="absolute inset-0"
         >
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${slides[currentSlide].image})` }}
           />
@@ -66,7 +83,7 @@ const HeroCarousel = () => {
       {/* Content Overlay */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center text-white px-4 max-w-4xl">
-          <motion.h1 
+          <motion.h1
             key={`title-${currentSlide}`}
             initial={{ y: 80, opacity: 0, scale: 0.8 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
@@ -75,7 +92,7 @@ const HeroCarousel = () => {
           >
             {slides[currentSlide].title}
           </motion.h1>
-          <motion.p 
+          <motion.p
             key={`subtitle-${currentSlide}`}
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -114,16 +131,16 @@ const HeroCarousel = () => {
             whileTap={{ scale: 0.9 }}
             onClick={() => setCurrentSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide 
-                ? 'bg-[#fef102] scale-125 shadow-lg' 
-                : 'bg-white/50 hover:bg-white/70'
+              index === currentSlide
+                ? "bg-[#fef102] scale-125 shadow-lg"
+                : "bg-white/50 hover:bg-white/70"
             }`}
           />
         ))}
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.5 }}
