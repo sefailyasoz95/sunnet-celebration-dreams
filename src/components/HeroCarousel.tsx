@@ -50,12 +50,12 @@ const HeroCarousel = () => {
     },
   ];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [slides.length]);
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setCurrentSlide((prev) => (prev + 1) % slides.length);
+  //   }, 5000);
+  //   return () => clearInterval(timer);
+  // }, [slides.length]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -85,14 +85,14 @@ const HeroCarousel = () => {
       </AnimatePresence>
 
       {/* Content Overlay */}
-      <div className="absolute inset-0 flex items-end justify-center">
-        <div className="text-center text-white px-4 mb-10 max-w-4xl">
+      <div className="absolute inset-0 flex justify-center">
+        <div className="text-center flex flex-col px-4 items-center justify-between text-white py-4 mb-10 max-w-4xl">
           <motion.h1
             key={`title-${currentSlide}`}
             initial={{ y: 80, opacity: 0, scale: 0.8 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-[#fef102] to-[#004682] bg-clip-text text-transparent"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r pb-2 from-[#fef102] to-[#004682] bg-clip-text text-transparent"
           >
             {slides[currentSlide].title}
           </motion.h1>
@@ -101,7 +101,7 @@ const HeroCarousel = () => {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
-            className="text-lg md:text-xl text-[#004682]/90 font-semibold"
+            className="text-lg md:text-xl text-[#004682]/90 font-semibold mb-5"
           >
             {slides[currentSlide].subtitle}
           </motion.p>
@@ -148,9 +148,13 @@ const HeroCarousel = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-white text-center"
+        className="absolute bottom-8 right-5 transform -translate-x-1/2 text-white text-center"
       >
-        <p className="text-sm mb-2 text-[#fef102]/90">Scroll to explore</p>
+        <div className="backdrop-blur-md px-1 rounded-lg">
+          <p className="text-sm mb-2 text-[#fef102]/90 font-semibold z-10">
+            Keşfetmek için kaydırın
+          </p>
+        </div>
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
