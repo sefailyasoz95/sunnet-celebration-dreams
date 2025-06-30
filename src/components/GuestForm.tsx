@@ -1,68 +1,70 @@
-
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Upload, MessageSquare, User, Camera, CheckCircle } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Upload, MessageSquare, User, Camera, CheckCircle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const GuestForm = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
-    message: '',
-    photo: null as File | null
+    fullName: "",
+    message: "",
+    photo: null as File | null,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        photo: file
+        photo: file,
       }));
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.fullName.trim()) {
       toast({
-        title: "Name Required",
-        description: "Please enter your full name.",
-        variant: "destructive"
+        title: "Ad soyad zorunlu",
+        description: "Adınızı soyadınızı giriniz.",
+        variant: "destructive",
       });
       return;
     }
 
     if (!formData.photo && !formData.message.trim()) {
       toast({
-        title: "Photo or Message Required",
-        description: "Please either upload a photo or leave a message.",
-        variant: "destructive"
+        title: "Fotoğraf yüklenmeli veya mesaj girilmeli",
+        description: "İkisinden birini yapmalısınız.",
+        variant: "destructive",
       });
       return;
     }
 
     setIsSubmitting(true);
-    
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
     setIsSubmitted(true);
     setIsSubmitting(false);
-    
+
     toast({
-      title: "Thank you for sharing! 🎉",
-      description: "Your message has been received successfully.",
+      title: "Gönderiniz için teşekkürler! 🎉",
+      description:
+        "Bu özel günde Selim Ali'nin yanında olduğunuz için teşekkür ederiz!",
     });
   };
 
@@ -76,7 +78,7 @@ const GuestForm = () => {
             transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
             className="bg-white dark:bg-gray-800 rounded-3xl p-12 shadow-2xl border-2 border-[#fef102]/30 dark:border-gray-700"
           >
-            <motion.div 
+            <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.3, type: "spring", bounce: 0.6 }}
@@ -84,21 +86,22 @@ const GuestForm = () => {
             >
               <CheckCircle className="w-10 h-10 text-white" />
             </motion.div>
-            <motion.h3 
+            <motion.h3
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
               className="text-3xl font-bold text-gray-800 dark:text-white mb-4"
             >
-              Thank You for Sharing! 🎉
+              Gönderiniz için teşekkürler! 🎉
             </motion.h3>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6 }}
               className="text-lg text-gray-600 dark:text-gray-300 mb-6"
             >
-              Your message has been received successfully. We can't wait to celebrate with you!
+              Gönderiniz kaydedildi, bugünü Selim Ali için ölümsüzleştirmenizden
+              ötürü teşekkür ederiz!
             </motion.p>
             <motion.button
               initial={{ opacity: 0, y: 20 }}
@@ -108,11 +111,11 @@ const GuestForm = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => {
                 setIsSubmitted(false);
-                setFormData({ fullName: '', message: '', photo: null });
+                setFormData({ fullName: "", message: "", photo: null });
               }}
               className="bg-gradient-to-r from-[#fef102] to-[#fef102]/80 hover:from-[#fef102]/90 hover:to-[#fef102] text-[#004682] px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
             >
-              Share Another Message
+              Bir mesaj daha gönder
             </motion.button>
           </motion.div>
         </div>
@@ -130,23 +133,24 @@ const GuestForm = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-12"
         >
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#fef102] to-[#004682] bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl font-bold mb-6 pb-1 bg-gradient-to-r from-[#fef102] to-[#004682] bg-clip-text text-transparent"
           >
-            💌 Share Your Wishes
+            💌 Duygularınızı veya anılarınızı paylaşın
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
             className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
           >
-            Leave a special message or share a photo to be part of our celebration memories
+            Bugünü Selim Ali için ölümsüzleştirebilmek adına, ona bugüne dair
+            bir fotoğraf veya mesaj gönderin!
           </motion.p>
         </motion.div>
 
@@ -165,9 +169,12 @@ const GuestForm = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <label htmlFor="fullName" className="flex items-center space-x-2 text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">
+              <label
+                htmlFor="fullName"
+                className="flex items-center space-x-2 text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3"
+              >
                 <User className="w-5 h-5 text-[#fef102]" />
-                <span>Full Name *</span>
+                <span>Ad Soyad *</span>
               </label>
               <motion.input
                 whileFocus={{ scale: 1.02, borderColor: "#fef102" }}
@@ -178,7 +185,7 @@ const GuestForm = () => {
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 dark:border-gray-600 focus:border-[#fef102] dark:focus:border-[#fef102] bg-white dark:bg-gray-700 text-gray-800 dark:text-white transition-all duration-300 text-lg"
-                placeholder="Enter your full name"
+                placeholder="Adınızı soyadınızı giriniz"
               />
             </motion.div>
 
@@ -191,7 +198,7 @@ const GuestForm = () => {
             >
               <label className="flex items-center space-x-2 text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">
                 <Camera className="w-5 h-5 text-[#004682]" />
-                <span>Upload Photo (Optional)</span>
+                <span>Fotoğraf Yükle (isteğe bağlı)</span>
               </label>
               <div className="relative">
                 <input
@@ -201,13 +208,15 @@ const GuestForm = () => {
                   onChange={handlePhotoUpload}
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 />
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.02, borderColor: "#004682" }}
                   className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center hover:border-[#004682] dark:hover:border-[#004682] transition-all duration-300 bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600"
                 >
                   <Upload className="w-12 h-12 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
                   <p className="text-gray-600 dark:text-gray-300 text-lg">
-                    {formData.photo ? formData.photo.name : "Click to upload a photo"}
+                    {formData.photo
+                      ? formData.photo.name
+                      : "Click to upload a photo"}
                   </p>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
                     JPG, PNG, or GIF (max 5MB)
@@ -223,9 +232,12 @@ const GuestForm = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <label htmlFor="message" className="flex items-center space-x-2 text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">
+              <label
+                htmlFor="message"
+                className="flex items-center space-x-2 text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3"
+              >
                 <MessageSquare className="w-5 h-5 text-green-600" />
-                <span>Message or Memory {!formData.photo && '*'}</span>
+                <span>Mesajınız {!formData.photo && "*"}</span>
               </label>
               <motion.textarea
                 whileFocus={{ scale: 1.02, borderColor: "#004682" }}
@@ -235,12 +247,12 @@ const GuestForm = () => {
                 onChange={handleInputChange}
                 rows={4}
                 className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 dark:border-gray-600 focus:border-[#004682] dark:focus:border-[#004682] bg-white dark:bg-gray-700 text-gray-800 dark:text-white transition-all duration-300 text-lg resize-none"
-                placeholder="Share your wishes, memories, or thoughts for this special day..."
+                placeholder="Bugüne özel duygularınızı bir mesaj ile paylaşın..."
               />
             </motion.div>
 
             {/* Validation Note */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -248,7 +260,8 @@ const GuestForm = () => {
               className="bg-[#fef102]/10 dark:bg-[#fef102]/5 border border-[#fef102]/50 dark:border-[#fef102]/30 rounded-lg p-4"
             >
               <p className="text-[#004682] dark:text-[#fef102] text-sm">
-                <strong>Note:</strong> Please provide either a photo or a message (or both) to share your wishes.
+                <strong>Not:</strong> Lütfen bir mesaj yazın veya fotoğraf
+                yükleyin, dilerseniz ikisini birlikte de yapabilirsiniz.
               </p>
             </motion.div>
 
@@ -267,10 +280,10 @@ const GuestForm = () => {
               {isSubmitting ? (
                 <div className="flex items-center justify-center space-x-2">
                   <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  <span>Submitting...</span>
+                  <span>Kaydediliyor...</span>
                 </div>
               ) : (
-                'Share Your Wishes 🎉'
+                "Mesajını gönder! 🎉"
               )}
             </motion.button>
           </form>

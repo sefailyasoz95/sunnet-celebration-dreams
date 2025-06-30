@@ -73,7 +73,7 @@ const HeroCarousel = () => {
           className="absolute inset-0"
         >
           <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            className="absolute inset-0 bg-center bg-no-repeat bg-contain lg:bg-cover"
             style={{ backgroundImage: `url(${slides[currentSlide].image})` }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/60" />
