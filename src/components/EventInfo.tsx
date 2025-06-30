@@ -42,7 +42,7 @@ const EventInfo = () => {
             viewport={{}}
             className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#fef102] to-[#004682] bg-clip-text text-transparent"
           >
-            🎉 Sünnet Düğünü 🎉
+            🎉 Selim Ali'nin Sünnet Düğünü 🎉
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -51,8 +51,8 @@ const EventInfo = () => {
             viewport={{}}
             className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
           >
-            Join us for a beautiful celebration filled with joy, tradition, and
-            unforgettable memories
+            Selim Ali'nin bu özel gününde bizlere katılmanızdan büyük mutluluk
+            duyarız.
           </motion.p>
         </motion.div>
 
@@ -95,7 +95,7 @@ const EventInfo = () => {
                   <Calendar className="w-6 h-6 text-[#004682] dark:text-[#fef102] flex-shrink-0" />
                   <div>
                     <p className="font-semibold text-gray-800 dark:text-white">
-                      16 Temmuz Çarşamba
+                      16 Temmuz Çarşamba, 2025
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300">
                       Bursa'ya gelemeyecek misafirlerimiz için
@@ -127,7 +127,7 @@ const EventInfo = () => {
                     <p className="font-semibold text-gray-800 dark:text-white">
                       Orhangazi Miray Düğün Salonu
                     </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                    <p className="text-sm text-gray-600 dark:text-gray-300 pb-5">
                       Muradiye, Göl Yolu Cd., 16825 Orhangazi̇/Bursa
                     </p>
                   </div>
@@ -157,7 +157,7 @@ const EventInfo = () => {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-white"
               >
-                Day 2 - Celebration
+                Bursa
               </motion.h3>
 
               <div className="space-y-4">
@@ -168,10 +168,10 @@ const EventInfo = () => {
                   <Calendar className="w-6 h-6 text-[#004682] dark:text-[#fef102] flex-shrink-0" />
                   <div>
                     <p className="font-semibold text-gray-800 dark:text-white">
-                      Sunday, March 16, 2024
+                      18 Temmuz Cuma, 2025
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300">
-                      Family Celebration
+                      Tüm davetlilerimizi bekleriz
                     </p>
                   </div>
                 </motion.div>
@@ -183,10 +183,10 @@ const EventInfo = () => {
                   <Clock className="w-6 h-6 text-[#004682] dark:text-[#fef102] flex-shrink-0" />
                   <div>
                     <p className="font-semibold text-gray-800 dark:text-white">
-                      12:00 PM - 8:00 PM
+                      18:00 - 22:00
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300">
-                      Lunch & Evening Party
+                      Sünnet Düğünü
                     </p>
                   </div>
                 </motion.div>
@@ -198,10 +198,11 @@ const EventInfo = () => {
                   <MapPin className="w-6 h-6 text-[#004682] dark:text-[#fef102] flex-shrink-0" />
                   <div>
                     <p className="font-semibold text-gray-800 dark:text-white">
-                      Garden Restaurant
+                      Konak18
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300">
-                      456 Garden Avenue, Riverside District
+                      Çelik Palas Hotel Karşısı, Gaziakdemir, Çekirge Cd. No:18,
+                      16265 Osmangazi̇/Bursa
                     </p>
                   </div>
                 </motion.div>

@@ -1,32 +1,36 @@
-
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { MapPin, Navigation } from 'lucide-react';
-import MapModal from './MapModal';
-
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { MapPin, Navigation } from "lucide-react";
+import MapModal from "./MapModal";
+import miray from "../assets/images/miray.webp";
+import konak from "../assets/images/konak.webp";
 const MapSection = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState({ address: '', name: '' });
+  const [selectedLocation, setSelectedLocation] = useState({
+    address: "",
+    name: "",
+  });
 
   const locations = [
     {
-      title: "Day 1 Location",
-      name: "Grand Celebration Hall",
-      address: "123 Celebration Street, City Center",
-      description: "Beautiful venue for the ceremony and reception",
-      mapImage: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=800&h=600&fit=crop"
+      title: "Orhangazi",
+      name: "Orhangazi Miray Düğün Salonu",
+      address: "Muradiye, Göl Yolu Cd., 16825 Orhangazi̇/Bursa",
+      description: "Kına + Düğün",
+      mapImage: miray,
     },
     {
-      title: "Day 2 Location", 
-      name: "Garden Restaurant",
-      address: "456 Garden Avenue, Riverside District",
-      description: "Elegant outdoor setting for family celebration",
-      mapImage: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=800&h=600&fit=crop"
-    }
+      title: "Bursa",
+      name: "Konak18",
+      address:
+        " Çelik Palas Hotel Karşısı, Gaziakdemir, Çekirge Cd. No:18, 16265 Osmangazi̇/Bursa",
+      description: "Sünnet Düğünü",
+      mapImage: konak,
+    },
   ];
 
-  const handleViewOnMap = (location: typeof locations[0]) => {
+  const handleViewOnMap = (location: (typeof locations)[0]) => {
     setSelectedLocation({ address: location.address, name: location.name });
     setModalOpen(true);
   };
@@ -42,28 +46,28 @@ const MapSection = () => {
             viewport={{ once: true, margin: "-100px" }}
             className="text-center mb-12"
           >
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
               className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#004682] to-[#fef102] bg-clip-text text-transparent"
             >
-              📍 Event Locations
+              📍 Konumlar
             </motion.h2>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
               className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
             >
-              Find us at these beautiful venues for our special celebration
+              Düğünlerin konumu için aşağıdaki haritaları kullanabilirsiniz.
             </motion.p>
           </motion.div>
 
           {/* Tab Navigation */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -79,8 +83,8 @@ const MapSection = () => {
                   onClick={() => setActiveTab(index)}
                   className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
                     activeTab === index
-                      ? 'bg-gradient-to-r from-[#004682] to-[#fef102] text-white shadow-lg'
-                      : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
+                      ? "bg-gradient-to-r from-[#004682] to-[#fef102] text-white shadow-lg"
+                      : "text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`}
                 >
                   {location.title}
@@ -99,48 +103,37 @@ const MapSection = () => {
           >
             <div className="grid lg:grid-cols-2 gap-0">
               {/* Map Placeholder */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="relative h-80 lg:h-96 group"
+                className="relative h-80 lg:h-96 group overflow-hidden"
               >
-                <div 
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${locations[activeTab].mapImage})` }}
+                <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-110 "
+                  style={{
+                    backgroundImage: `url(${locations[activeTab].mapImage})`,
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="absolute bottom-4 left-4 right-4"
-                >
-                  <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 border border-[#fef102]/30">
-                    <div className="flex items-center space-x-2 text-sm text-gray-600">
-                      <Navigation className="w-4 h-4 text-[#004682]" />
-                      <span>Interactive map coming soon</span>
-                    </div>
-                  </div>
-                </motion.div>
               </motion.div>
 
               {/* Location Details */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true }}
                 className="p-8 flex flex-col justify-center"
               >
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="flex items-center space-x-3 mb-4"
                 >
-                  <motion.div 
+                  <motion.div
                     whileHover={{ rotate: 360, scale: 1.1 }}
                     transition={{ duration: 0.6 }}
                     className="w-12 h-12 bg-gradient-to-br from-[#004682] to-[#fef102] rounded-full flex items-center justify-center"
@@ -151,8 +144,8 @@ const MapSection = () => {
                     {locations[activeTab].name}
                   </h3>
                 </motion.div>
-                
-                <motion.p 
+
+                <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
@@ -160,8 +153,8 @@ const MapSection = () => {
                 >
                   {locations[activeTab].address}
                 </motion.p>
-                
-                <motion.p 
+
+                <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.6 }}
@@ -169,28 +162,20 @@ const MapSection = () => {
                 >
                   {locations[activeTab].description}
                 </motion.p>
-                
-                <motion.div 
+
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.7 }}
                   className="flex space-x-4"
                 >
-                  <motion.button 
+                  <motion.button
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => handleViewOnMap(locations[activeTab])}
                     className="bg-gradient-to-r from-[#004682] to-[#004682]/80 hover:from-[#004682]/90 hover:to-[#004682] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
-                    View on Map
-                  </motion.button>
-                  <motion.button 
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => handleViewOnMap(locations[activeTab])}
-                    className="bg-gradient-to-r from-[#fef102] to-[#fef102]/80 hover:from-[#fef102]/90 hover:to-[#fef102] text-[#004682] px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
-                  >
-                    Get Directions
+                    Haritada Gör
                   </motion.button>
                 </motion.div>
               </motion.div>
