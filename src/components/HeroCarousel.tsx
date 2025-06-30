@@ -52,7 +52,7 @@ const HeroCarousel = () => {
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
+          transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
           className="absolute inset-0"
         >
           <div 
@@ -68,19 +68,19 @@ const HeroCarousel = () => {
         <div className="text-center text-white px-4 max-w-4xl">
           <motion.h1 
             key={`title-${currentSlide}`}
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-amber-200 to-white bg-clip-text text-transparent"
+            initial={{ y: 80, opacity: 0, scale: 0.8 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-[#fef102] to-white bg-clip-text text-transparent"
           >
             {slides[currentSlide].title}
           </motion.h1>
           <motion.p 
             key={`subtitle-${currentSlide}`}
-            initial={{ y: 30, opacity: 0 }}
+            initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-lg md:text-xl lg:text-2xl text-amber-100 font-light"
+            transition={{ duration: 1, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
+            className="text-lg md:text-xl lg:text-2xl text-[#fef102]/90 font-light"
           >
             {slides[currentSlide].subtitle}
           </motion.p>
@@ -88,28 +88,34 @@ const HeroCarousel = () => {
       </div>
 
       {/* Navigation Arrows */}
-      <button
+      <motion.button
+        whileHover={{ scale: 1.1, x: -5 }}
+        whileTap={{ scale: 0.9 }}
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-[#fef102]/30 text-white p-3 rounded-full transition-all duration-300 border border-[#fef102]/30"
       >
         <ChevronLeft size={24} />
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+        whileHover={{ scale: 1.1, x: 5 }}
+        whileTap={{ scale: 0.9 }}
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-[#fef102]/30 text-white p-3 rounded-full transition-all duration-300 border border-[#fef102]/30"
       >
         <ChevronRight size={24} />
-      </button>
+      </motion.button>
 
       {/* Slide Indicators */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
         {slides.map((_, index) => (
-          <button
+          <motion.button
             key={index}
+            whileHover={{ scale: 1.3 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => setCurrentSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === currentSlide 
-                ? 'bg-amber-400 scale-125' 
+                ? 'bg-[#fef102] scale-125 shadow-lg' 
                 : 'bg-white/50 hover:bg-white/70'
             }`}
           />
@@ -123,7 +129,7 @@ const HeroCarousel = () => {
         transition={{ duration: 1, delay: 1.5 }}
         className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-white text-center"
       >
-        <p className="text-sm mb-2 text-amber-100">Scroll to explore</p>
+        <p className="text-sm mb-2 text-[#fef102]/90">Scroll to explore</p>
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
@@ -132,7 +138,7 @@ const HeroCarousel = () => {
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-3 bg-amber-400 rounded-full mt-2"
+            className="w-1 h-3 bg-[#fef102] rounded-full mt-2"
           />
         </motion.div>
       </motion.div>

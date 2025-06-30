@@ -35,7 +35,6 @@ const GuestForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validation: Name is required, and either photo or message is required
     if (!formData.fullName.trim()) {
       toast({
         title: "Name Required",
@@ -56,7 +55,6 @@ const GuestForm = () => {
 
     setIsSubmitting(true);
     
-    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500));
     
     setIsSubmitted(true);
@@ -70,32 +68,52 @@ const GuestForm = () => {
 
   if (isSubmitted) {
     return (
-      <div className="py-20 px-4 bg-gradient-to-br from-amber-50 via-white to-blue-50 dark:from-amber-900 dark:via-gray-800 dark:to-blue-900">
+      <div className="py-20 px-4 bg-gradient-to-br from-yellow-50 via-white to-blue-50 dark:from-yellow-900 dark:via-gray-800 dark:to-blue-900">
         <div className="max-w-2xl mx-auto text-center">
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
-            className="bg-white dark:bg-gray-800 rounded-3xl p-12 shadow-2xl border border-amber-200 dark:border-gray-700"
+            className="bg-white dark:bg-gray-800 rounded-3xl p-12 shadow-2xl border-2 border-[#fef102]/30 dark:border-gray-700"
           >
-            <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <motion.div 
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.3, type: "spring", bounce: 0.6 }}
+              className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
               <CheckCircle className="w-10 h-10 text-white" />
-            </div>
-            <h3 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+            </motion.div>
+            <motion.h3 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="text-3xl font-bold text-gray-800 dark:text-white mb-4"
+            >
               Thank You for Sharing! 🎉
-            </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+            </motion.h3>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="text-lg text-gray-600 dark:text-gray-300 mb-6"
+            >
               Your message has been received successfully. We can't wait to celebrate with you!
-            </p>
-            <button
+            </motion.p>
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => {
                 setIsSubmitted(false);
                 setFormData({ fullName: '', message: '', photo: null });
               }}
-              className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+              className="bg-gradient-to-r from-[#fef102] to-[#fef102]/80 hover:from-[#fef102]/90 hover:to-[#fef102] text-[#004682] px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               Share Another Message
-            </button>
+            </motion.button>
           </motion.div>
         </div>
       </div>
@@ -103,53 +121,76 @@ const GuestForm = () => {
   }
 
   return (
-    <div className="py-20 px-4 bg-gradient-to-br from-amber-50 via-white to-blue-50 dark:from-amber-900 dark:via-gray-800 dark:to-blue-900">
+    <div className="py-20 px-4 bg-gradient-to-br from-yellow-50 via-white to-blue-50 dark:from-yellow-900 dark:via-gray-800 dark:to-blue-900">
       <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-amber-600 to-blue-600 bg-clip-text text-transparent">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#fef102] to-[#004682] bg-clip-text text-transparent"
+          >
             💌 Share Your Wishes
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
+          >
             Leave a special message or share a photo to be part of our celebration memories
-          </p>
+          </motion.p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 border border-amber-200 dark:border-gray-700"
+          className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 border-2 border-[#fef102]/30 dark:border-gray-700"
         >
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Full Name */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
               <label htmlFor="fullName" className="flex items-center space-x-2 text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                <User className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                <User className="w-5 h-5 text-[#fef102]" />
                 <span>Full Name *</span>
               </label>
-              <input
+              <motion.input
+                whileFocus={{ scale: 1.02, borderColor: "#fef102" }}
                 type="text"
                 id="fullName"
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleInputChange}
                 required
-                className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 dark:border-gray-600 focus:border-amber-500 dark:focus:border-amber-400 bg-white dark:bg-gray-700 text-gray-800 dark:text-white transition-all duration-300 text-lg"
+                className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 dark:border-gray-600 focus:border-[#fef102] dark:focus:border-[#fef102] bg-white dark:bg-gray-700 text-gray-800 dark:text-white transition-all duration-300 text-lg"
                 placeholder="Enter your full name"
               />
-            </div>
+            </motion.div>
 
             {/* Photo Upload */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
               <label className="flex items-center space-x-2 text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                <Camera className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <Camera className="w-5 h-5 text-[#004682]" />
                 <span>Upload Photo (Optional)</span>
               </label>
               <div className="relative">
@@ -160,7 +201,10 @@ const GuestForm = () => {
                   onChange={handlePhotoUpload}
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 />
-                <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300 bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600">
+                <motion.div 
+                  whileHover={{ scale: 1.02, borderColor: "#004682" }}
+                  className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center hover:border-[#004682] dark:hover:border-[#004682] transition-all duration-300 bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-gray-600"
+                >
                   <Upload className="w-12 h-12 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
                   <p className="text-gray-600 dark:text-gray-300 text-lg">
                     {formData.photo ? formData.photo.name : "Click to upload a photo"}
@@ -168,39 +212,57 @@ const GuestForm = () => {
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
                     JPG, PNG, or GIF (max 5MB)
                   </p>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Message */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
               <label htmlFor="message" className="flex items-center space-x-2 text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                <MessageSquare className="w-5 h-5 text-green-600 dark:text-green-400" />
+                <MessageSquare className="w-5 h-5 text-green-600" />
                 <span>Message or Memory {!formData.photo && '*'}</span>
               </label>
-              <textarea
+              <motion.textarea
+                whileFocus={{ scale: 1.02, borderColor: "#004682" }}
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
                 rows={4}
-                className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 dark:border-gray-600 focus:border-green-500 dark:focus:border-green-400 bg-white dark:bg-gray-700 text-gray-800 dark:text-white transition-all duration-300 text-lg resize-none"
+                className="w-full px-4 py-4 rounded-xl border-2 border-gray-200 dark:border-gray-600 focus:border-[#004682] dark:focus:border-[#004682] bg-white dark:bg-gray-700 text-gray-800 dark:text-white transition-all duration-300 text-lg resize-none"
                 placeholder="Share your wishes, memories, or thoughts for this special day..."
               />
-            </div>
+            </motion.div>
 
             {/* Validation Note */}
-            <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-lg p-4">
-              <p className="text-amber-800 dark:text-amber-200 text-sm">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="bg-[#fef102]/10 dark:bg-[#fef102]/5 border border-[#fef102]/50 dark:border-[#fef102]/30 rounded-lg p-4"
+            >
+              <p className="text-[#004682] dark:text-[#fef102] text-sm">
                 <strong>Note:</strong> Please provide either a photo or a message (or both) to share your wishes.
               </p>
-            </div>
+            </motion.div>
 
             {/* Submit Button */}
-            <button
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-gradient-to-r from-amber-500 to-blue-500 hover:from-amber-600 hover:to-blue-600 disabled:from-gray-400 disabled:to-gray-500 text-white py-4 px-8 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-[1.02] disabled:scale-100 shadow-lg hover:shadow-xl disabled:cursor-not-allowed"
+              className="w-full bg-gradient-to-r from-[#fef102] to-[#004682] hover:from-[#fef102]/90 hover:to-[#004682]/90 disabled:from-gray-400 disabled:to-gray-500 text-white py-4 px-8 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <div className="flex items-center justify-center space-x-2">
@@ -210,7 +272,7 @@ const GuestForm = () => {
               ) : (
                 'Share Your Wishes 🎉'
               )}
-            </button>
+            </motion.button>
           </form>
         </motion.div>
       </div>
