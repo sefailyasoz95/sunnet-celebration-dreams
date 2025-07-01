@@ -39,7 +39,7 @@ const EventInfo = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{}}
-            className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#fef102] to-[#004682] bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl font-bold mb-6 pb-2 bg-gradient-to-r from-[#fef102] to-[#004682] bg-clip-text text-transparent"
           >
             🎉 Selim Ali'nin Sünnet Düğünü 🎉
           </motion.h2>
