@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Upload, MessageSquare, User, Camera, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import supabase from "@/lib/supabase";
+import imageCompression from "browser-image-compression";
 
 const GuestForm = () => {
   const [formData, setFormData] = useState({
@@ -56,7 +58,66 @@ const GuestForm = () => {
 
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    let imageUrl = null;
+
+    if (formData.photo) {
+      let fileToUpload = formData.photo;
+      if (fileToUpload.size > 2 * 1024 * 1024) {
+        // Compress if over 2MB
+        fileToUpload = await imageCompression(fileToUpload, {
+          maxSizeMB: 2,
+          maxWidthOrHeight: 1920,
+          useWebWorker: true,
+        });
+      }
+
+      // Generate a unique filename
+      const fileExt = fileToUpload.name.split(".").pop();
+      const fileName = `${Date.now()}-${Math.random()
+        .toString(36)
+        .substr(2, 9)}.${fileExt}`;
+
+      // Upload to Supabase Storage
+      const { data, error } = await supabase.storage
+        .from("images")
+        .upload(fileName, fileToUpload);
+
+      if (error) {
+        toast({
+          title: "Fotoğraf yüklenemedi",
+          description: error.message,
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Get public URL
+      const { data: publicUrlData } = supabase.storage
+        .from("images")
+        .getPublicUrl(fileName);
+      imageUrl = publicUrlData.publicUrl;
+    }
+
+    // Insert into messages table
+    const { error: insertError } = await supabase.from("messages").insert([
+      {
+        name_surname: formData.fullName,
+        message: formData.message,
+        url: imageUrl,
+        // created_at will be auto-generated if set up in Supabase
+      },
+    ]);
+
+    if (insertError) {
+      toast({
+        title: "Mesaj kaydedilemedi",
+        description: insertError.message,
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
 
     setIsSubmitted(true);
     setIsSubmitting(false);
